@@ -4,6 +4,7 @@ module NextPClogic(NextPC, CurrentPC, SignExtImm64, Branch, ALUZero, Uncondbranc
        output [63:0] NextPC; 
        
        reg [63:0] tempImm64;
+       reg [63:0] NextPC;
        
        always@(*)
               begin
