@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 `define STRLEN 32
-module NextPCLogicTest;
+module NextPCLogicTest_v;
 
 	task passTest;
 		input [63:0] actualOut, expectedOut;
@@ -36,7 +36,7 @@ module NextPCLogicTest;
 	end
 
 	//Instantiate the Unit Under Test (UUT)
-	NextPCLogic uut(
+	NextPClogic uut(
 		.CurrentPC(CurrentPC),
 		.SignExtImm64(SignExtImm64),
 		.Branch(Branch),
