@@ -4,7 +4,7 @@ module NextPCLogicTest_v;
 
 	task passTest;
 		input [63:0] actualOut, expectedOut;
-		input [`STRLEN*8.0] testType;
+		input [`STRLEN*8:0] testType;
 		inout [7:0] passed;
 		
 		if(actualOut == expectedOut) begin $display ("%s passed", testType); passed = passed + 1; end
@@ -27,7 +27,6 @@ module NextPCLogicTest_v;
 	
 	//Outputs
 	wire [63:0] NextPC;
-	reg [63:0] expectedOut;
 	
 	initial begin
       //Dump all wire/reg values to dump file
@@ -47,53 +46,26 @@ module NextPCLogicTest_v;
 	
 	initial begin
 		//Initialize inputs
-		CurrentPC = 64'b0;
-		SignExtImm64 = 64'b0;
-		Branch = 1'b0;
-		ALUZero = 1'b0;
-		Uncondbranch = 1'b0;
-		passed = 7'b0;
-		numTests = 7'b0;
+		CurrentPC = 0;
+		SignExtImm64 = 0;
+		Branch = 0;
+		ALUZero = 0;
+		Uncondbranch = 0;
+		passed = 0;
+		numTests = 0;
 		#3;
 		
-		CurrentPC = 64'h10;
-		SignExtImm64 = 64'h0;
-		Branch = 1'b0;
-		ALUZero = 1'b0;
-		Uncondbranch = 1'b0;
-		expectedOut = 64'h14;
-		#4;
-		passTest(NextPC, expectedOut, "PC+4 Test", passed);
+		
+		{CurrentPC, SignExtImm64, Branch, ALUZero, Uncondbranch} = {64'h10, 64'h0, 1'b0, 1'b0, 1'b0}; #4; passTest({NextPC}, 64'h14, "PC+4 Test", passed);
 		numTests = numTests + 1;
 		
-		CurrentPC = 64'h10;
-		SignExtImm64 = 64'h2;
-		Branch = 1'b1;
-		ALUZero = 1'b1;
-		Uncondbranch = 1'b0;
-		expectedOut = 64'h18;
-		#4;
-		passTest(NextPC, expectedOut, "Conditional: Take Branch Test", passed);
+		{CurrentPC, SignExtImm64, Branch, ALUZero, Uncondbranch} = {64'h10, 64'h2, 1'b1, 1'b1, 1'b0}; #4; passTest({NextPC}, 64'h18, "Conditional: Take Branch Test", passed);
 		numTests = numTests + 1;
 		
-		CurrentPC = 64'h10;
-		SignExtImm64 = 64'h3;
-		Branch = 1'b1;
-		ALUZero = 1'b0;
-		Uncondbranch = 1'b0;
-		expectedOut = 64'h14;
-		#4;
-		passTest(NextPC, expectedOut, "Conditional: Don't Take Branch Test", passed);
+		{CurrentPC, SignExtImm64, Branch, ALUZero, Uncondbranch} = {64'h10, 64'h3, 1'b1, 1'b0, 1'b0}; #4; passTest({NextPC}, 64'h14, "Conditional: Don't Take Branch Test", passed);
 		numTests = numTests + 1;
 		
-		CurrentPC = 64'h10;
-		SignExtImm64 = 64'h4;
-		Branch = 1'b0;
-		ALUZero = 1'b0;
-		Uncondbranch = 1'b1;
-		expectedOut = 64'h20;
-		#4;
-		passTest(NextPC, expectedOut, "Unconditional Branch Test", passed);
+		{CurrentPC, SignExtImm64, Branch, ALUZero, Uncondbranch} = {64'h10, 64'h4, 1'b0, 1'b0, 1'b1}; #4; passTest({NextPC}, 64'h20, "Unconditional Test", passed);
 		numTests = numTests + 1;
 		
 		allPassed(passed, numTests);
