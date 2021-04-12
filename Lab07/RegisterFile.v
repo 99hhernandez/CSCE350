@@ -18,7 +18,7 @@ module RegisterFile(BusA, BusB, BusW, RA, RB, RW, RegWr, Clk);
 	assign #2 BusA = registers[RA];
 	assign #2 BusB = registers[RB];
 	
-	always@ (negedge Clk) begin
+	always@ (negedge Clk) begin						// changes at the negative (falling) clock edge
 		if(RegWr) begin
 			if(RW != 31) begin					// cant let user change Register 31
 				registers[RW] <= #3 BusW;
