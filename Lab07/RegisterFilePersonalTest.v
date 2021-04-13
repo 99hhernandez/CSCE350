@@ -112,42 +112,42 @@ module RegisterFilePersonalTest_v;
 
 
 		{RA, RB, RW, BusW, RegWr} = {5'h0, 5'h1, 5'h0, 64'h0, 1'b0};
-		#10; Clk = 0; #10; Clk = 1;
+		#10; Clk = 1; #10; Clk = 0;
 		passTest(BusA, 64'h0, "A Reading X0", passed);
 		passTest(BusB, 64'h1, "B Reading X1", passed);
 
 		{RA, RB, RW, BusW, RegWr} = {5'h2, 5'h3, 5'h1, 64'h1000, 1'b0};
-		#10; Clk = 0; #10; Clk = 1;
+		#10; Clk = 1; #10; Clk = 0;
 		passTest(BusA, 64'h2, "A Reading X2", passed);
 		passTest(BusB, 64'h3, "B Reading X3", passed);
 		
 		{RA, RB, RW, BusW, RegWr} = {5'h4, 5'h5, 5'h0, 64'h1000, 1'b1};
-		#10; Clk = 0; #10; Clk = 1;
+		#10; Clk = 1; #10; Clk = 0;
 		passTest(BusA, 64'h4, "A Reading X4 and Writing X0 = 0x1000", passed);
 		passTest(BusB, 64'h5, "B Reading X5 and Writing X0 = 0x1000", passed);
 		
 		{RA, RB, RW, BusW, RegWr} = {5'h6, 5'h7, 5'hA, 64'h1010, 1'b1};
-		#10; Clk = 0; #10; Clk = 1;
+		#10; Clk = 1; #10; Clk = 0;
 		passTest(BusA, 64'h6, "A Reading X6 and Writing X10 = 0x1010", passed);
 		passTest(BusB, 64'h7, "B Reading X7 and Writing X10 = 0x1010", passed);
 		
 		{RA, RB, RW, BusW, RegWr} = {5'h8, 5'h9, 5'hB, 64'h103000, 1'b1};
-		#10; Clk = 0; #10; Clk = 1;
+		#10; Clk = 1; #10; Clk = 0;
 		passTest(BusA, 64'h8, "A Reading X8 and Writing X11 = 0x103000", passed);
 		passTest(BusB, 64'h9, "B Reading X9 and Writing X11 = 0x103000", passed);
 
 		{RA, RB, RW, BusW, RegWr} = {5'hA, 5'hB, 5'hC, 64'h0, 1'b0};
-		#10; Clk = 0; #10; Clk = 1;
+		#10; Clk = 1; #10; Clk = 0;
 		passTest(BusA, 64'h1010, "A Reading X10", passed);
 		passTest(BusB, 64'h103000, "B Reading X11", passed);
 
 		{RA, RB, RW, BusW, RegWr} = {5'hC, 5'hD, 5'hD, 64'hABCD, 1'b1};
-		#10; Clk = 0; #10; Clk = 1;
+		#10; Clk = 1; #10; Clk = 0;
 		passTest(BusA, 64'hC, "A Reading X12 and Writing X13 = 0xABCD", passed);
 		passTest(BusB, 64'hABCD, "B Reading X13 and Writing X13 = 0xABCD", passed);
 
 		{RA, RB, RW, BusW, RegWr} = {5'hE, 5'hF, 5'hE, 64'h9080009, 1'b0};
-		#10; Clk = 0; #10; Clk = 1;
+		#10; Clk = 1; #10; Clk = 0;
 		passTest(BusA, 64'hE, "A Reading X14", passed);
 		passTest(BusB, 64'hF, "B Reading X15", passed);
 
