@@ -56,16 +56,16 @@ module NextPCLogicTest_v;
 		#3;
 		
 		
-		{CurrentPC, SignExtImm64, Branch, ALUZero, Uncondbranch} = {64'h10, 64'h0, 1'b0, 1'b0, 1'b0}; #4; passTest({NextPC}, 64'h14, "PC+4 Test", passed);
+		{CurrentPC, SignExtImm64, Branch, ALUZero, Uncondbranch} = {64'h10, 64'h0, 1'b0, 1'b0, 1'b0}; #6; passTest({NextPC}, 64'h14, "PC+4 Test", passed);
 		numTests = numTests + 1;
 		
-		{CurrentPC, SignExtImm64, Branch, ALUZero, Uncondbranch} = {64'h10, 64'h2, 1'b1, 1'b1, 1'b0}; #4; passTest({NextPC}, 64'h18, "Conditional: Take Branch Test", passed);
+		{CurrentPC, SignExtImm64, Branch, ALUZero, Uncondbranch} = {64'h10, 64'h2, 1'b1, 1'b1, 1'b0}; #6; passTest({NextPC}, 64'h12, "Conditional: Take Branch Test", passed);
 		numTests = numTests + 1;
 		
-		{CurrentPC, SignExtImm64, Branch, ALUZero, Uncondbranch} = {64'h10, 64'h3, 1'b1, 1'b0, 1'b0}; #4; passTest({NextPC}, 64'h14, "Conditional: Don't Take Branch Test", passed);
+		{CurrentPC, SignExtImm64, Branch, ALUZero, Uncondbranch} = {64'h10, 64'h3, 1'b1, 1'b0, 1'b0}; #6; passTest({NextPC}, 64'h14, "Conditional: Don't Take Branch Test", passed);
 		numTests = numTests + 1;
 		
-		{CurrentPC, SignExtImm64, Branch, ALUZero, Uncondbranch} = {64'h10, 64'h4, 1'b0, 1'b0, 1'b1}; #4; passTest({NextPC}, 64'h20, "Unconditional Test", passed);
+		{CurrentPC, SignExtImm64, Branch, ALUZero, Uncondbranch} = {64'h10, 64'h4, 1'b0, 1'b0, 1'b1}; #6; passTest({NextPC}, 64'h14, "Unconditional Test", passed);
 		numTests = numTests + 1;
 		
 		allPassed(passed, numTests);
